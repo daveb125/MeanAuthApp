@@ -28,12 +28,12 @@ private router : Router) {
   }
 
   onlistingSubmit(){
-    console.log(this.UserID);
+    
 
-    const User_ID = localStorage.getItem('user');
+    var User_ID = JSON.parse(localStorage.getItem('user'))    
 
     const listing = {
-      UserID : User_ID,
+      UserID : User_ID.id,
       Startdate: this.Startdate,
       Enddate : this.Enddate,
       Description : this.Description
