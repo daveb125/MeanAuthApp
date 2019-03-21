@@ -1,2 +1,18 @@
-<h2 class="page-header">Dashboard</h2>
+<!-- Fetch all listings and display them -->
+<h2 class = "page-header">Dashboard</h2>
 <p>Welcome to your Dashboard!</p>
+<form (submit)="onlistingSubmit()">
+  <div class="form-group">
+    <label >Startdate</label>
+    <input type="text" class="form-control" placeholder="Enter Startdate" [(ngModel)]="Startdate" name="Startdate">
+  </div>
+  <div class="form-group">
+      <label >Enddate</label>
+      <input type="text" class="form-control" placeholder="Enter Enddate" [(ngModel)]="Enddate" name ="Enddate">
+  </div>
+  <div class="form-group">
+      <label >Description</label>
+      <input type="text" class="form-control" placeholder="Enter Ad description" [(ngModel)]="Description" name = "Description">
+  </div> 
+  <input type="submit" class = "btn btn-primary" value="submit">
+</form>

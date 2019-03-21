@@ -7,8 +7,16 @@ import {tokenNotExpired} from 'angular2-jwt'
 export class AuthService {
   authToken : any;
   user : any;
+  listing : any;
 
   constructor(private http:Http) { }
+
+  registerlisting(listing) {
+    let headers = new Headers();
+    headers.append('Content-type','application/json');
+    return this.http.post('http://localhost:3000/listings/register',listing,{headers: headers}).
+    map(res => res.json());
+  }
 
   registerUser(user) {
     let headers = new Headers();

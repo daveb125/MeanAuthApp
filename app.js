@@ -9,6 +9,7 @@ const app = express();
 const port = 3000;
 
 const users = require('./routes/users.js');
+const listings = require('./routes/listings.js');
 const config = require('./config/database');
 
 mongoose.connect(config.database);
@@ -40,6 +41,9 @@ require('./config/passport') (passport);
 
 //Users Routes
 app.use('/users/',users);
+
+//listings Routes
+app.use('/listings/',listings);
 
 //Index Route
 app.get('/',(req,res)=>{
