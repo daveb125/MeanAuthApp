@@ -1,47 +1,9 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>MEAN Auth App</title>
-  <link rel = "stylesheet"  href = "https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/lux/bootstrap.css">
-  <!--https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/lux/bootstrap.min.css-->
-  <base href="/">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <script type="text/javascript">
-//   (function() {
-//     document.onmousemove = handleMouseMove;
-//     function handleMouseMove(event) {
-//         var eventDoc, doc, body;
-
-//         event = event || window.event; // IE-ism
-
-//         // If pageX/Y aren't available and clientX/Y are,
-//         // calculate pageX/Y - logic taken from jQuery.
-//         // (This is to support old IE)
-//         if (event.pageX == null && event.clientX != null) {
-//             eventDoc = (event.target && event.target.ownerDocument) || document;
-//             doc = eventDoc.documentElement;
-//             body = eventDoc.body;
-
-//             event.pageX = event.clientX +
-//               (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
-//               (doc && doc.clientLeft || body && body.clientLeft || 0);
-//             event.pageY = event.clientY +
-//               (doc && doc.scrollTop  || body && body.scrollTop  || 0) -
-//               (doc && doc.clientTop  || body && body.clientTop  || 0 );
-//         }
-
-//         console.log( 'x : ' +  event.pageX +' y: '+  event.pageY)
-//     }
-// })();
 /*!
  * Mus.js v1.0.1
  * (c) 2018 Mauricio Giordano <giordano@inevent.us> - InEvent
  * Released under the MIT License.
  */
- (function (global, factory) {
+(function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
 	(global.Mus = factory());
@@ -426,89 +388,3 @@ Mus.prototype = {
 return Mus;
 
 })));
-    </script>
-
-</head>
-<body>  
-  
-  <app-root>Loading...</app-root>
-<footer>
-    <table class="controls">
-        <tr>
-          <td>
-            <h1>User Tracking</h1>
-            <p>Status: <span id="status"></span></p>
-            <p>Speed: <span id="speed">Normal</span></p>
-            <br/>
-            <button id="recording" onclick="toggleRecord();">Start recording</button>
-            <button id="play" onclick="play();">Playback</button>
-            <br/>
-            <button onclick="mus.setPlaybackSpeed(mus.speed.SLOW);">Slow</button>
-            <button onclick="mus.setPlaybackSpeed(mus.speed.NORMAL);">Normal</button>
-            <button onclick="mus.setPlaybackSpeed(mus.speed.FAST);">Fast</button>
-            <br/>
-            <button onclick="releaseMus();">Release</button>
-          </td>
-          <td>
-            <h2>Data console</h2>
-            <textarea id="console" rows="2" cols="10"></textarea>
-          </td>
-        </tr>
-      </table>
-</footer>
-  <script>
-			var mus = new Mus();
-			mus.setPlaybackSpeed(mus.speed.SLOW);
-
-			var setConsoleData = function() {
-				// var textarea = document.getElementById("console");
-				// textarea.innerHTML = JSON.stringify(mus.getData());
-        // textarea.scrollTop = textarea.scrollHeight;
-        console.log(JSON.stringify(mus.getData()));
-			};
-			var releaseMus = function() {
-				mus.release();
-				setConsoleData();
-			};
-			var toggleRecord = function() {
-				if (mus.isPlaying()) return;
-				if (!mus.isRecording()) {
-					document.getElementById("status").innerHTML = "Recording";
-					document.getElementById("recording").innerHTML = "Stop recording";
-					mus.record(setConsoleData);
-				} else {
-					document.getElementById("status").innerHTML = "Stand by";
-					document.getElementById("recording").innerHTML = "Start recording";
-					mus.stop();
-					setConsoleData();
-				}
-			};
-			var play = function() {
-				if (mus.isRecording()) return;
-				if (mus.isPlaying()) {
-					document.getElementById("play").innerHTML = "Play";
-					document.getElementById("status").innerHTML = "Stand by";
-					mus.pause();
-				} else {
-					document.getElementById("play").innerHTML = "Pause";
-					document.getElementById("status").innerHTML = "Playing";
-					mus.play(function() {
-						document.getElementById("play").innerHTML = "Play";
-						document.getElementById("status").innerHTML = "Stand by";
-					});
-				}
-			};
-			var setSpeed = function(speed) {
-				mus.setPlaybackSpeed(speed);
-				if (speed == mus.speed.SLOW) {
-					document.getElementById("speed").innerHTML = "Slow";
-				} else if (speed == mus.speed.NORMAL) {
-					document.getElementById("speed").innerHTML = "Normal";
-				} else {
-					document.getElementById("speed").innerHTML = "Fast";
-				}
-			};
-			setConsoleData();
-		</script>
-</body>
-</html>

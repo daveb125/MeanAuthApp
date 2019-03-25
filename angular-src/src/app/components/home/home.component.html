@@ -1,1 +1,15 @@
 <p>Home Works!</p>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('html').mousemove(function(event){
+            console.log("mouse move X:"+event.pageX+" Y:"+event.pageY);
+        });
+        $('html').click(function(event){
+            console.log("mouse click X:"+event.pageX+" Y:"+event.pageY);
+        });
+        $('html').keyup(function(event){
+            console.log("keyboard event: key pressed "+event.keyCode);
+        });
+    });
+</script>
